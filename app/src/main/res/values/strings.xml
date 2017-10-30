@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Ed Ma\'s QuizBuilder</string>
+    <string name="startBtn">Start</string>
+    <string name="startTxt">Enter Your Name</string>
+</resources>
