@@ -30,7 +30,8 @@ public class MainActivity extends AppCompatActivity
                 Bundle extras = new Bundle();
                 extras.putString("KEY", nameText.getText().toString());
                 i.putExtras(extras);
-                startActivityForResult(i,1);
+                startActivityForResult(i, 1);
+
             }
         });
     }
