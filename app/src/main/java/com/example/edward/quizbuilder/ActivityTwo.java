@@ -4,20 +4,13 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+
+import java.io.*;
+
+import java.util.*;
+
 
 
 public class ActivityTwo extends AppCompatActivity
@@ -247,5 +240,4 @@ public class ActivityTwo extends AppCompatActivity
             }
         });
     }
-
 }
