@@ -106,40 +106,39 @@ public class ActivityTwo extends AppCompatActivity
         rbtnFour.setText(ansKey.get(3).toString());
 
 //        answers.remove("One"); //check to see if it will remove answer once it have been selected.
-        btnText.setOnClickListener(new View.OnClickListener(){
-                                       @Override
-                                       public void onClick(View view)
-                                       {
-                                           ansKey.clear();
-                                           intQst = (ran.nextInt(questions.size())+1);
+        btnText.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                ansKey.clear();
+                intQst = (ran.nextInt(questions.size())+1);
 
-                                           questionView.setText("Question \n" + questions.get(intQst));
-                                           ansKey.add(map.get(questions.get(intQst)));
-                                           answers.remove(map.get(questions.get(intQst+1)));//remove answer for list
+                questionView.setText("Question \n" + questions.get(intQst));
+                ansKey.add(map.get(questions.get(intQst)));
+                answers.remove(map.get(questions.get(intQst+1)));//remove answer for list
 //                                           questions.remove(intQst);
-                                           Collections.shuffle(answers);
-                                           ansKey.add(answers.get(0));
-                                           ansKey.add(answers.get(1));
-                                           ansKey.add(answers.get(2));
-                                           Collections.shuffle(ansKey);//shuffle answer key
-                                           rbtnOne.setText(ansKey.get(0).toString());
-                                           rbtnTwo.setText(ansKey.get(1).toString());
-                                           rbtnThree.setText(ansKey.get(2).toString());
-                                           rbtnFour.setText(ansKey.get(3).toString());
+                Collections.shuffle(answers);
+                ansKey.add(answers.get(0));
+                ansKey.add(answers.get(1));
+                ansKey.add(answers.get(2));
+                Collections.shuffle(ansKey);//shuffle answer key
+                rbtnOne.setText(ansKey.get(0).toString());
+                rbtnTwo.setText(ansKey.get(1).toString());
+                rbtnThree.setText(ansKey.get(2).toString());
+                rbtnFour.setText(ansKey.get(3).toString());
 
-                                           rbtnOne.setTextColor(Color.BLACK);
-                                           rbtnTwo.setTextColor(Color.BLACK);
-                                           rbtnThree.setTextColor(Color.BLACK);
-                                           rbtnFour.setTextColor(Color.BLACK);
+                rbtnOne.setTextColor(Color.BLACK);
+                rbtnTwo.setTextColor(Color.BLACK);
+                rbtnThree.setTextColor(Color.BLACK);
+                rbtnFour.setTextColor(Color.BLACK);
 
-                                           rbtnOne.setChecked(false);
-                                           rbtnTwo.setChecked(false);
-                                           rbtnThree.setChecked(false);
-                                           rbtnFour.setChecked(false);
-                                       }
-
-                                   }
-        );
+                rbtnOne.setChecked(false);
+                rbtnTwo.setChecked(false);
+                rbtnThree.setChecked(false);
+                rbtnFour.setChecked(false);
+            }
+        });
 
 //        ArrayList<String> answerSet = new ArrayList<>(4);
         //checking button function
