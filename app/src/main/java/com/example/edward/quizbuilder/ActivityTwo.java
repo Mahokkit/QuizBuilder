@@ -3,30 +3,38 @@ package com.example.edward.quizbuilder;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
-
-import java.io.*;
-
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 
 
 public class ActivityTwo extends AppCompatActivity
 {
-    TextView nameText;
     String str;
     String[] strings;
     Button btnText;
     TextView questionView, titleView;
     Map<String,String> map;
     ArrayList<String> questions, answers,ansKey;
-//    Arraylist<String> answers;
+    //    Arraylist<String> answers;
     RadioButton rbtnOne, rbtnTwo, rbtnThree, rbtnFour;
 
     Random ran;
-    int intQst;
+    int intQst = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -78,6 +86,7 @@ public class ActivityTwo extends AppCompatActivity
             catch (IOException e)
             {
                 e.printStackTrace();
+                Log.e("IOException", String.valueOf(e));
             }
         }
 
@@ -89,9 +98,11 @@ public class ActivityTwo extends AppCompatActivity
 
         ansKey = new ArrayList<String>(4);
 
-        intQst = (ran.nextInt(questions.size())+1);
+//        intQst = (ran.nextInt(questions.size())+1);
 
-        questionView.setText("Question \n" + questions.get(intQst));
+
+        ansKey.clear();
+        questionView.setText(questions.get(intQst));
         ansKey.add(map.get(questions.get(intQst)));
         answers.remove(map.get(questions.get(intQst)));//remove answer for list
 //        questions.remove(intQst);
@@ -112,11 +123,11 @@ public class ActivityTwo extends AppCompatActivity
             public void onClick(View view)
             {
                 ansKey.clear();
-                intQst = (ran.nextInt(questions.size())+1);
-
-                questionView.setText("Question \n" + questions.get(intQst));
+//                intQst = (ran.nextInt(questions.size())+1);
+                intQst = intQst + 1;
+                questionView.setText(questions.get(intQst));
                 ansKey.add(map.get(questions.get(intQst)));
-                answers.remove(map.get(questions.get(intQst+1)));//remove answer for list
+                answers.remove(map.get(questions.get(intQst)));//remove answer for list
 //                                           questions.remove(intQst);
                 Collections.shuffle(answers);
                 ansKey.add(answers.get(0));
@@ -238,5 +249,8 @@ public class ActivityTwo extends AppCompatActivity
                 }
             }
         });
+
     }
+
+
 }
