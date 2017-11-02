@@ -1,5 +1,6 @@
 package com.example.edward.quizbuilder;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -35,6 +35,8 @@ public class ActivityTwo extends AppCompatActivity
 
     Random ran;
     int intQst = 0;
+    int score = 0;
+    int counter = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -115,39 +117,53 @@ public class ActivityTwo extends AppCompatActivity
         rbtnTwo.setText(ansKey.get(1).toString());
         rbtnThree.setText(ansKey.get(2).toString());
         rbtnFour.setText(ansKey.get(3).toString());
-
+        counter = counter + 1;
 //        answers.remove("One"); //check to see if it will remove answer once it have been selected.
         btnText.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                ansKey.clear();
+
+                if (counter == 11)
+                {
+                    String scoreString = Integer.toString(score);
+                    Intent i2 = new Intent("ActivityThree");
+                    Bundle toThree = new Bundle();
+                    toThree.putString("SCORE", scoreString.toString());
+                    i2.putExtras(toThree);
+                    startActivityForResult(i2,1);
+                }
+                else
+                {
+                    ansKey.clear();
 //                intQst = (ran.nextInt(questions.size())+1);
-                intQst = intQst + 1;
-                questionView.setText(questions.get(intQst));
-                ansKey.add(map.get(questions.get(intQst)));
-                answers.remove(map.get(questions.get(intQst)));//remove answer for list
+                    intQst = intQst + 1;
+                    questionView.setText(questions.get(intQst));
+                    ansKey.add(map.get(questions.get(intQst)));
+                    answers.remove(map.get(questions.get(intQst)));//remove answer for list
 //                                           questions.remove(intQst);
-                Collections.shuffle(answers);
-                ansKey.add(answers.get(0));
-                ansKey.add(answers.get(1));
-                ansKey.add(answers.get(2));
-                Collections.shuffle(ansKey);//shuffle answer key
-                rbtnOne.setText(ansKey.get(0).toString());
-                rbtnTwo.setText(ansKey.get(1).toString());
-                rbtnThree.setText(ansKey.get(2).toString());
-                rbtnFour.setText(ansKey.get(3).toString());
+                    Collections.shuffle(answers);
+                    ansKey.add(answers.get(0));
+                    ansKey.add(answers.get(1));
+                    ansKey.add(answers.get(2));
+                    Collections.shuffle(ansKey);//shuffle answer key
+                    rbtnOne.setText(ansKey.get(0).toString());
+                    rbtnTwo.setText(ansKey.get(1).toString());
+                    rbtnThree.setText(ansKey.get(2).toString());
+                    rbtnFour.setText(ansKey.get(3).toString());
 
-                rbtnOne.setTextColor(Color.BLACK);
-                rbtnTwo.setTextColor(Color.BLACK);
-                rbtnThree.setTextColor(Color.BLACK);
-                rbtnFour.setTextColor(Color.BLACK);
+                    rbtnOne.setTextColor(Color.BLACK);
+                    rbtnTwo.setTextColor(Color.BLACK);
+                    rbtnThree.setTextColor(Color.BLACK);
+                    rbtnFour.setTextColor(Color.BLACK);
 
-                rbtnOne.setChecked(false);
-                rbtnTwo.setChecked(false);
-                rbtnThree.setChecked(false);
-                rbtnFour.setChecked(false);
+                    rbtnOne.setChecked(false);
+                    rbtnTwo.setChecked(false);
+                    rbtnThree.setChecked(false);
+                    rbtnFour.setChecked(false);
+                    counter = counter + 1;
+                }
             }
         });
 
@@ -158,19 +174,20 @@ public class ActivityTwo extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Toast.makeText(getApplicationContext(), map.get(questions.get(intQst)), Toast.LENGTH_SHORT).show();
                 if (rbtnOne.getText() == map.get(questions.get(intQst)))
                 {
                     rbtnOne.setTextColor(Color.BLUE);
-                    Toast.makeText(getApplicationContext(), "Correct!", Toast.LENGTH_LONG).show();
+
                     rbtnTwo.setTextColor(Color.BLACK);
                     rbtnThree.setTextColor(Color.BLACK);
                     rbtnFour.setTextColor(Color.BLACK);
+
+                    score = score + 1;
                 }
                 else
                 {
                     rbtnOne.setTextColor(Color.RED);
-                    Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_LONG).show();
+
                     rbtnTwo.setTextColor(Color.BLACK);
                     rbtnThree.setTextColor(Color.BLACK);
                     rbtnFour.setTextColor(Color.BLACK);
@@ -186,15 +203,16 @@ public class ActivityTwo extends AppCompatActivity
                 if (rbtnTwo.getText() == map.get(questions.get(intQst)))
                 {
                     rbtnTwo.setTextColor(Color.BLUE);
-                    Toast.makeText(getApplicationContext(), "Correct!", Toast.LENGTH_LONG).show();
+
                     rbtnOne.setTextColor(Color.BLACK);
                     rbtnThree.setTextColor(Color.BLACK);
                     rbtnFour.setTextColor(Color.BLACK);
+                    score = score + 1;
                 }
                 else
                 {
                     rbtnTwo.setTextColor(Color.RED);
-                    Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_LONG).show();
+
                     rbtnOne.setTextColor(Color.BLACK);
                     rbtnThree.setTextColor(Color.BLACK);
                     rbtnFour.setTextColor(Color.BLACK);
@@ -210,15 +228,16 @@ public class ActivityTwo extends AppCompatActivity
                 if (rbtnThree.getText() == map.get(questions.get(intQst)))
                 {
                     rbtnThree.setTextColor(Color.BLUE);
-                    Toast.makeText(getApplicationContext(), "Correct!", Toast.LENGTH_LONG).show();
+
                     rbtnTwo.setTextColor(Color.BLACK);
                     rbtnOne.setTextColor(Color.BLACK);
                     rbtnFour.setTextColor(Color.BLACK);
+                    score = score + 1;
                 }
                 else
                 {
                     rbtnThree.setTextColor(Color.RED);
-                    Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_LONG).show();
+
                     rbtnTwo.setTextColor(Color.BLACK);
                     rbtnOne.setTextColor(Color.BLACK);
                     rbtnFour.setTextColor(Color.BLACK);
@@ -234,15 +253,16 @@ public class ActivityTwo extends AppCompatActivity
                 if (rbtnFour.getText() == map.get(questions.get(intQst)))
                 {
                     rbtnFour.setTextColor(Color.BLUE);
-                    Toast.makeText(getApplicationContext(), "Correct!", Toast.LENGTH_LONG).show();
+
                     rbtnTwo.setTextColor(Color.BLACK);
                     rbtnThree.setTextColor(Color.BLACK);
                     rbtnOne.setTextColor(Color.BLACK);
+                    score = score + 1;
                 }
                 else
                 {
                     rbtnFour.setTextColor(Color.RED);
-                    Toast.makeText(getApplicationContext(), "Incorrect", Toast.LENGTH_LONG).show();
+
                     rbtnTwo.setTextColor(Color.BLACK);
                     rbtnThree.setTextColor(Color.BLACK);
                     rbtnOne.setTextColor(Color.BLACK);
